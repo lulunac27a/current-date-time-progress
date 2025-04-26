@@ -1,6 +1,7 @@
 * {
-    font-family: system-ui, sans-serif;
+    font-family:
+        system-ui, sans-serif; /*set default font to system-based font*/
 }
 span {
-    white-space: pre-line;
+    white-space: pre-line; /*use multiple lines with line breaks for improved readability*/
 }
