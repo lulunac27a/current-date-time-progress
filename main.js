@@ -173,4 +173,10 @@ hourProgressText.value = hourProgress; //set hour progress text
 minuteProgressText.value = minuteProgress; //set minute progress text
 secondProgressText.value = secondProgress; //set second progress text
 const percentage = (number) => (number * 100).toFixed(4) + "%"; //percentage function
-currentProgressText.textContent = `Year progress: ${percentage(yearProgress)} (${percentage(yearProgressUtc)})\nMonth progress: ${percentage(monthProgress)} (${percentage(monthProgressUtc)})\nWeek progress: ${percentage(weekProgress)} (${percentage(weekProgressUtc)})\nDay progress: ${percentage(dayProgress)} (${percentage(dayProgressUtc)})\nHour progress: ${percentage(hourProgress)} (${percentage(hourProgressUtc)})\nMinute progress: ${percentage(minuteProgress)} (${percentage(minuteProgressUtc)})\nSecond progress: ${percentage(secondProgress)} (${percentage(secondProgressUtc)})`; //set current progress text based on current date and time progress
+currentProgressText.textContent = `Year progress: ${percentage(yearProgress)} (${percentage(yearProgressUtc)})
+Month progress: ${percentage(monthProgress)} (${percentage(monthProgressUtc)})
+Week progress: ${percentage(weekProgress)} (${percentage(weekProgressUtc)})
+Day progress: ${percentage(dayProgress)} (${percentage(dayProgressUtc)})
+Hour progress: ${percentage(hourProgress)} (${percentage(hourProgressUtc)})
+Minute progress: ${percentage(minuteProgress)} (${percentage(minuteProgressUtc)})
+Second progress: ${percentage(secondProgress)} (${percentage(secondProgressUtc)})`; //set current progress text based on current date and time progress
