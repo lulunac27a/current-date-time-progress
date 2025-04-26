@@ -4,4 +4,5 @@
 }
 span {
     white-space: pre-line; /*use multiple lines with line breaks for improved readability*/
+    line-height: 150%; /*set default line height to 150%*/
 }
