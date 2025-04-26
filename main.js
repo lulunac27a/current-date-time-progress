@@ -139,4 +139,16 @@ const secondProgress =
     (currentDateTime - secondStart) / (secondEnd - secondStart); //second progress
 const secondProgressUtc =
     (currentUtcDateTime - secondStartUtc) / (secondEndUtc - secondStartUtc); //second progress in UTC
+const yearProgressText = document.getElementById("yearProgress"); //year progress text
+const monthProgressText = document.getElementById("monthProgress"); //month progress text
+const dayProgressText = document.getElementById("dayProgress"); //day progress text
+const hourProgressText = document.getElementById("hourProgress"); //hour progress text
+const minuteProgressText = document.getElementById("minuteProgress"); //minute progress text
+const secondProgressText = document.getElementById("secondProgress"); //second progress text
+yearProgressText.value = yearProgress; //set year progress text
+monthProgressText.value = monthProgress; //set month progress text
+dayProgressText.value = dayProgress; //set day progress text
+hourProgressText.value = hourProgress; //set hour progress text
+minuteProgressText.value = minuteProgress; //set minute progress text
+secondProgressText.value = secondProgress; //set second progress text
 currentProgressText.textContent = `Year progress: ${yearProgress} (${yearProgressUtc})\nMonth progress: ${monthProgress} (${monthProgressUtc})\nDay progress: ${dayProgress} (${dayProgressUtc})\nHour progress: ${hourProgress} (${hourProgressUtc})\nMinute progress: ${minuteProgress} (${minuteProgressUtc})\nSecond progress: ${secondProgress} (${secondProgressUtc})`; //set current progress text based on current date and time progress
