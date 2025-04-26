@@ -36,6 +36,22 @@ const monthStart = new Date(currentYear, currentMonth, 1); //start of month
 const monthEnd = new Date(currentYear, currentMonth + 1, 0); //end of month
 const monthStartUtc = new Date(currentUtcYear, currentUtcMonth, 1); //start of month in UTC
 const monthEndUtc = new Date(currentUtcYear, currentUtcMonth + 1, 0); //end of month in UTC
+const weekStart = new Date(currentYear, currentMonth, currentDate - currentDay); //start of week
+const weekEnd = new Date(
+    currentYear,
+    currentMonth,
+    currentDate + (7 - currentDay),
+); //end of week
+const weekStartUtc = new Date(
+    currentUtcYear,
+    currentUtcMonth,
+    currentUtcDate - currentUtcDay,
+); //start of week in UTC
+const weekEndUtc = new Date(
+    currentUtcYear,
+    currentUtcMonth,
+    currentUtcDate + (7 - currentUtcDay),
+); //end of week in UTC
 const dayStart = new Date(currentYear, currentMonth, currentDate); //start of day
 const dayEnd = new Date(currentYear, currentMonth, currentDate + 1); //end of day
 const dayStartUtc = new Date(currentUtcYear, currentUtcMonth, currentUtcDate); //start of day in UTC
@@ -125,6 +141,9 @@ const yearProgressUtc =
 const monthProgress = (currentDateTime - monthStart) / (monthEnd - monthStart); //month progress
 const monthProgressUtc =
     (currentUtcDateTime - monthStartUtc) / (monthEndUtc - monthStartUtc); //month progress in UTC
+const weekProgress = (currentDateTime - weekStart) / (weekEnd - weekStart); //week progress
+const weekProgressUtc =
+    (currentUtcDateTime - weekStartUtc) / (weekEndUtc - weekStartUtc); //week progress in UTC
 const dayProgress = (currentDateTime - dayStart) / (dayEnd - dayStart); //day progress
 const dayProgressUtc =
     (currentUtcDateTime - dayStartUtc) / (dayEndUtc - dayStartUtc); //day progress in UTC
@@ -141,14 +160,16 @@ const secondProgressUtc =
     (currentUtcDateTime - secondStartUtc) / (secondEndUtc - secondStartUtc); //second progress in UTC
 const yearProgressText = document.getElementById("yearProgress"); //year progress text
 const monthProgressText = document.getElementById("monthProgress"); //month progress text
+const weekProgressText = document.getElementById("weekProgress"); //week progress text
 const dayProgressText = document.getElementById("dayProgress"); //day progress text
 const hourProgressText = document.getElementById("hourProgress"); //hour progress text
 const minuteProgressText = document.getElementById("minuteProgress"); //minute progress text
 const secondProgressText = document.getElementById("secondProgress"); //second progress text
 yearProgressText.value = yearProgress; //set year progress text
 monthProgressText.value = monthProgress; //set month progress text
+weekProgressText.value = weekProgress; //set week progress text
 dayProgressText.value = dayProgress; //set day progress text
 hourProgressText.value = hourProgress; //set hour progress text
 minuteProgressText.value = minuteProgress; //set minute progress text
 secondProgressText.value = secondProgress; //set second progress text
-currentProgressText.textContent = `Year progress: ${yearProgress} (${yearProgressUtc})\nMonth progress: ${monthProgress} (${monthProgressUtc})\nDay progress: ${dayProgress} (${dayProgressUtc})\nHour progress: ${hourProgress} (${hourProgressUtc})\nMinute progress: ${minuteProgress} (${minuteProgressUtc})\nSecond progress: ${secondProgress} (${secondProgressUtc})`; //set current progress text based on current date and time progress
+currentProgressText.textContent = `Year progress: ${yearProgress} (${yearProgressUtc})\nMonth progress: ${monthProgress} (${monthProgressUtc})\nWeek progress: ${weekProgress} (${weekProgressUtc})\nDay progress: ${dayProgress} (${dayProgressUtc})\nHour progress: ${hourProgress} (${hourProgressUtc})\nMinute progress: ${minuteProgress} (${minuteProgressUtc})\nSecond progress: ${secondProgress} (${secondProgressUtc})`; //set current progress text based on current date and time progress
