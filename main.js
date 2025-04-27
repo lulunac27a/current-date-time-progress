@@ -2,9 +2,9 @@ const currentDateTimeText = document.getElementById("currentDateTime"); //curren
 const currentDateTimeUtcText = document.getElementById("currentDateTimeUtc"); //current date and time in UTC text
 const currentProgressText = document.getElementById("currentProgress"); //current progress text
 const updateDateTimeButton = document.getElementById("updateDateTime"); //update date and time button
-const updateDateTimeUtcButton = document.getElementById("updateDateTimeUtc"); //update date and time in UTC button
-const currentDateTime = new Date(); //current date and time
-const currentUtcDateTime = new Date(
+const updateDateTimeUtcButton = document.getElementById("updateUtcDateTime"); //update date and time in UTC button
+let currentDateTime = new Date(); //current date and time
+let currentUtcDateTime = new Date(
     currentDateTime.getUTCFullYear(),
     currentDateTime.getUTCMonth(),
     currentDateTime.getUTCDate(),
@@ -12,117 +12,248 @@ const currentUtcDateTime = new Date(
     currentDateTime.getUTCMinutes(),
     currentDateTime.getUTCSeconds(),
 ); //current date and time in UTC
+const updateCurrentDateTime = () => {
+    //function to update current date and time
+    currentDateTime = new Date(); //current date and time
+    currentUtcDateTime = new Date(
+        currentDateTime.getUTCFullYear(),
+        currentDateTime.getUTCMonth(),
+        currentDateTime.getUTCDate(),
+        currentDateTime.getUTCHours(),
+        currentDateTime.getUTCMinutes(),
+        currentDateTime.getUTCSeconds(),
+    ); //current date and time in UTC
+};
 currentDateTimeText.textContent = `${currentDateTime.toLocaleString()}`; //set current date and time text
 currentDateTimeUtcText.textContent = `${currentDateTime.toUTCString()}`; //set current date and time in UTC text
+let currentYear = currentDateTime.getFullYear(); //current year
+let currentUtcYear = currentDateTime.getUTCFullYear(); //current year in UTC
+let currentMonth = currentDateTime.getMonth(); //current month
+let currentUtcMonth = currentDateTime.getUTCMonth(); //current month in UTC
+let currentDate = currentDateTime.getDate(); //current date
+let currentUtcDate = currentDateTime.getUTCDate(); //current date in UTC
+let currentDay = currentDateTime.getDay(); //current day of week
+let currentUtcDay = currentDateTime.getUTCDay(); //current day of week in UTC
+let currentHour = currentDateTime.getHours(); //current hour
+let currentUtcHour = currentDateTime.getUTCHours(); //current hour in UTC
+let currentMinute = currentDateTime.getMinutes(); //current minute
+let currentUtcMinute = currentDateTime.getUTCMinutes(); //current minute in UTC
+let currentSecond = currentDateTime.getSeconds(); //current second
+let currentUtcSecond = currentDateTime.getUTCSeconds(); //current second in UTC
+let yearStart = new Date(currentYear, 0, 1); //start of year
+let yearEnd = new Date(currentYear + 1, 0, 1); //end of year
+let yearStartUtc = new Date(currentUtcYear, 0, 1); //start of year in UTC
+let yearEndUtc = new Date(currentUtcYear + 1, 0, 0); //end of year in UTC
+let monthStart = new Date(currentYear, currentMonth, 1); //start of month
+let monthEnd = new Date(currentYear, currentMonth + 1, 0); //end of month
+let monthStartUtc = new Date(currentUtcYear, currentUtcMonth, 1); //start of month in UTC
+let monthEndUtc = new Date(currentUtcYear, currentUtcMonth + 1, 0); //end of month in UTC
+let weekStart = new Date(currentYear, currentMonth, currentDate - currentDay); //start of week
+let weekEnd = new Date(
+    currentYear,
+    currentMonth,
+    currentDate + (7 - currentDay),
+); //end of week
+let weekStartUtc = new Date(
+    currentUtcYear,
+    currentUtcMonth,
+    currentUtcDate - currentUtcDay,
+); //start of week in UTC
+let weekEndUtc = new Date(
+    currentUtcYear,
+    currentUtcMonth,
+    currentUtcDate + (7 - currentUtcDay),
+); //end of week in UTC
+let dayStart = new Date(currentYear, currentMonth, currentDate); //start of day
+let dayEnd = new Date(currentYear, currentMonth, currentDate + 1); //end of day
+let dayStartUtc = new Date(currentUtcYear, currentUtcMonth, currentUtcDate); //start of day in UTC
+let dayEndUtc = new Date(currentUtcYear, currentUtcMonth, currentUtcDate + 1); //end of day in UTC
+let hourStart = new Date(currentYear, currentMonth, currentDate, currentHour); //start of hour
+let hourEnd = new Date(currentYear, currentMonth, currentDate, currentHour + 1); //end of hour
+let hourStartUtc = new Date(
+    currentUtcYear,
+    currentUtcMonth,
+    currentUtcDate,
+    currentUtcHour,
+); //start of hour in UTC
+let hourEndUtc = new Date(
+    currentUtcYear,
+    currentUtcMonth,
+    currentUtcDate,
+    currentUtcHour + 1,
+); //end of hour in UTC
+let minuteStart = new Date(
+    currentYear,
+    currentMonth,
+    currentDate,
+    currentHour,
+    currentMinute,
+); //start of minute
+let minuteEnd = new Date(
+    currentYear,
+    currentMonth,
+    currentDate,
+    currentHour,
+    currentMinute + 1,
+); //end of minute
+let minuteStartUtc = new Date(
+    currentUtcYear,
+    currentUtcMonth,
+    currentUtcDate,
+    currentUtcHour,
+    currentUtcMinute,
+); //start of minute in UTC
+let minuteEndUtc = new Date(
+    currentUtcYear,
+    currentUtcMonth,
+    currentUtcDate,
+    currentUtcHour,
+    currentUtcMinute + 1,
+); //end of minute in UTC
+let secondStart = new Date(
+    currentYear,
+    currentMonth,
+    currentDate,
+    currentHour,
+    currentMinute,
+    currentSecond,
+); //start of second
+let secondEnd = new Date(
+    currentYear,
+    currentMonth,
+    currentDate,
+    currentHour,
+    currentMinute,
+    currentSecond + 1,
+); //end of second
+let secondStartUtc = new Date(
+    currentUtcYear,
+    currentUtcMonth,
+    currentUtcDate,
+    currentUtcHour,
+    currentUtcMinute,
+    currentUtcSecond,
+); //start of second in UTC
+let secondEndUtc = new Date(
+    currentUtcYear,
+    currentUtcMonth,
+    currentUtcDate,
+    currentUtcHour,
+    currentUtcMinute,
+    currentUtcSecond + 1,
+); //end of second in UTC
+let yearProgress = (currentDateTime - yearStart) / (yearEnd - yearStart); //year progress
+let yearProgressUtc =
+    (currentUtcDateTime - yearStartUtc) / (yearEndUtc - yearStartUtc); //year progress in UTC
+let monthProgress = (currentDateTime - monthStart) / (monthEnd - monthStart); //month progress
+let monthProgressUtc =
+    (currentUtcDateTime - monthStartUtc) / (monthEndUtc - monthStartUtc); //month progress in UTC
+let weekProgress = (currentDateTime - weekStart) / (weekEnd - weekStart); //week progress
+let weekProgressUtc =
+    (currentUtcDateTime - weekStartUtc) / (weekEndUtc - weekStartUtc); //week progress in UTC
+let dayProgress = (currentDateTime - dayStart) / (dayEnd - dayStart); //day progress
+let dayProgressUtc =
+    (currentUtcDateTime - dayStartUtc) / (dayEndUtc - dayStartUtc); //day progress in UTC
+let hourProgress = (currentDateTime - hourStart) / (hourEnd - hourStart); //hour progress
+let hourProgressUtc =
+    (currentUtcDateTime - hourStartUtc) / (hourEndUtc - hourStartUtc); //hour progress in UTC
+let minuteProgress =
+    (currentDateTime - minuteStart) / (minuteEnd - minuteStart); //minute progress
+let minuteProgressUtc =
+    (currentUtcDateTime - minuteStartUtc) / (minuteEndUtc - minuteStartUtc); //minute progress in UTC
+let secondProgress =
+    (currentDateTime - secondStart) / (secondEnd - secondStart); //second progress
+let secondProgressUtc =
+    (currentUtcDateTime - secondStartUtc) / (secondEndUtc - secondStartUtc); //second progress in UTC
+const percentage = (number) => (number * 100).toFixed(4) + "%"; //percentage function
 const setCurrentDateTime = () => {
     //function to set current date and time
-    const currentYear = currentDateTime.getFullYear(); //current year
-    const currentUtcYear = currentDateTime.getUTCFullYear(); //current year in UTC
-    const currentMonth = currentDateTime.getMonth(); //current month
-    const currentUtcMonth = currentDateTime.getUTCMonth(); //current month in UTC
-    const currentDate = currentDateTime.getDate(); //current date
-    const currentUtcDate = currentDateTime.getUTCDate(); //current date in UTC
-    const currentDay = currentDateTime.getDay(); //current day of week
-    const currentUtcDay = currentDateTime.getUTCDay(); //current day of week in UTC
-    const currentHour = currentDateTime.getHours(); //current hour
-    const currentUtcHour = currentDateTime.getUTCHours(); //current hour in UTC
-    const currentMinute = currentDateTime.getMinutes(); //current minute
-    const currentUtcMinute = currentDateTime.getUTCMinutes(); //current minute in UTC
-    const currentSecond = currentDateTime.getSeconds(); //current second
-    const currentUtcSecond = currentDateTime.getUTCSeconds(); //current second in UTC
-    const yearStart = new Date(currentYear, 0, 1); //start of year
-    const yearEnd = new Date(currentYear + 1, 0, 1); //end of year
-    const yearStartUtc = new Date(currentUtcYear, 0, 1); //start of year in UTC
-    const yearEndUtc = new Date(currentUtcYear + 1, 0, 0); //end of year in UTC
-    const monthStart = new Date(currentYear, currentMonth, 1); //start of month
-    const monthEnd = new Date(currentYear, currentMonth + 1, 0); //end of month
-    const monthStartUtc = new Date(currentUtcYear, currentUtcMonth, 1); //start of month in UTC
-    const monthEndUtc = new Date(currentUtcYear, currentUtcMonth + 1, 0); //end of month in UTC
-    const weekStart = new Date(
-        currentYear,
-        currentMonth,
-        currentDate - currentDay,
-    ); //start of week
-    const weekEnd = new Date(
+    updateCurrentDateTime(); //update current date and time
+    currentYear = currentDateTime.getFullYear(); //current year
+    currentUtcYear = currentDateTime.getUTCFullYear(); //current year in UTC
+    currentMonth = currentDateTime.getMonth(); //current month
+    currentUtcMonth = currentDateTime.getUTCMonth(); //current month in UTC
+    currentDate = currentDateTime.getDate(); //current date
+    currentUtcDate = currentDateTime.getUTCDate(); //current date in UTC
+    currentDay = currentDateTime.getDay(); //current day of week
+    currentUtcDay = currentDateTime.getUTCDay(); //current day of week in UTC
+    currentHour = currentDateTime.getHours(); //current hour
+    currentUtcHour = currentDateTime.getUTCHours(); //current hour in UTC
+    currentMinute = currentDateTime.getMinutes(); //current minute
+    currentUtcMinute = currentDateTime.getUTCMinutes(); //current minute in UTC
+    currentSecond = currentDateTime.getSeconds(); //current second
+    currentUtcSecond = currentDateTime.getUTCSeconds(); //current second in UTC
+    yearStart = new Date(currentYear, 0, 1); //start of year
+    yearEnd = new Date(currentYear + 1, 0, 1); //end of year
+    yearStartUtc = new Date(currentUtcYear, 0, 1); //start of year in UTC
+    yearEndUtc = new Date(currentUtcYear + 1, 0, 0); //end of year in UTC
+    monthStart = new Date(currentYear, currentMonth, 1); //start of month
+    monthEnd = new Date(currentYear, currentMonth + 1, 0); //end of month
+    monthStartUtc = new Date(currentUtcYear, currentUtcMonth, 1); //start of month in UTC
+    monthEndUtc = new Date(currentUtcYear, currentUtcMonth + 1, 0); //end of month in UTC
+    weekStart = new Date(currentYear, currentMonth, currentDate - currentDay); //start of week
+    weekEnd = new Date(
         currentYear,
         currentMonth,
         currentDate + (7 - currentDay),
     ); //end of week
-    const weekStartUtc = new Date(
+    weekStartUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate - currentUtcDay,
     ); //start of week in UTC
-    const weekEndUtc = new Date(
+    weekEndUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate + (7 - currentUtcDay),
     ); //end of week in UTC
-    const dayStart = new Date(currentYear, currentMonth, currentDate); //start of day
-    const dayEnd = new Date(currentYear, currentMonth, currentDate + 1); //end of day
-    const dayStartUtc = new Date(
-        currentUtcYear,
-        currentUtcMonth,
-        currentUtcDate,
-    ); //start of day in UTC
-    const dayEndUtc = new Date(
-        currentUtcYear,
-        currentUtcMonth,
-        currentUtcDate + 1,
-    ); //end of day in UTC
-    const hourStart = new Date(
-        currentYear,
-        currentMonth,
-        currentDate,
-        currentHour,
-    ); //start of hour
-    const hourEnd = new Date(
-        currentYear,
-        currentMonth,
-        currentDate,
-        currentHour + 1,
-    ); //end of hour
-    const hourStartUtc = new Date(
+    dayStart = new Date(currentYear, currentMonth, currentDate); //start of day
+    dayEnd = new Date(currentYear, currentMonth, currentDate + 1); //end of day
+    dayStartUtc = new Date(currentUtcYear, currentUtcMonth, currentUtcDate); //start of day in UTC
+    dayEndUtc = new Date(currentUtcYear, currentUtcMonth, currentUtcDate + 1); //end of day in UTC
+    hourStart = new Date(currentYear, currentMonth, currentDate, currentHour); //start of hour
+    hourEnd = new Date(currentYear, currentMonth, currentDate, currentHour + 1); //end of hour
+    hourStartUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate,
         currentUtcHour,
     ); //start of hour in UTC
-    const hourEndUtc = new Date(
+    hourEndUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate,
         currentUtcHour + 1,
     ); //end of hour in UTC
-    const minuteStart = new Date(
+    minuteStart = new Date(
         currentYear,
         currentMonth,
         currentDate,
         currentHour,
         currentMinute,
     ); //start of minute
-    const minuteEnd = new Date(
+    minuteEnd = new Date(
         currentYear,
         currentMonth,
         currentDate,
         currentHour,
         currentMinute + 1,
     ); //end of minute
-    const minuteStartUtc = new Date(
+    minuteStartUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate,
         currentUtcHour,
         currentUtcMinute,
     ); //start of minute in UTC
-    const minuteEndUtc = new Date(
+    minuteEndUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate,
         currentUtcHour,
         currentUtcMinute + 1,
     ); //end of minute in UTC
-    const secondStart = new Date(
+    secondStart = new Date(
         currentYear,
         currentMonth,
         currentDate,
@@ -130,7 +261,7 @@ const setCurrentDateTime = () => {
         currentMinute,
         currentSecond,
     ); //start of second
-    const secondEnd = new Date(
+    secondEnd = new Date(
         currentYear,
         currentMonth,
         currentDate,
@@ -138,7 +269,7 @@ const setCurrentDateTime = () => {
         currentMinute,
         currentSecond + 1,
     ); //end of second
-    const secondStartUtc = new Date(
+    secondStartUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate,
@@ -146,7 +277,7 @@ const setCurrentDateTime = () => {
         currentUtcMinute,
         currentUtcSecond,
     ); //start of second in UTC
-    const secondEndUtc = new Date(
+    secondEndUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate,
@@ -154,29 +285,28 @@ const setCurrentDateTime = () => {
         currentUtcMinute,
         currentUtcSecond + 1,
     ); //end of second in UTC
-    const yearProgress = (currentDateTime - yearStart) / (yearEnd - yearStart); //year progress
-    const yearProgressUtc =
+    yearProgress = (currentDateTime - yearStart) / (yearEnd - yearStart); //year progress
+    yearProgressUtc =
         (currentUtcDateTime - yearStartUtc) / (yearEndUtc - yearStartUtc); //year progress in UTC
-    const monthProgress =
-        (currentDateTime - monthStart) / (monthEnd - monthStart); //month progress
-    const monthProgressUtc =
+    monthProgress = (currentDateTime - monthStart) / (monthEnd - monthStart); //month progress
+    monthProgressUtc =
         (currentUtcDateTime - monthStartUtc) / (monthEndUtc - monthStartUtc); //month progress in UTC
-    const weekProgress = (currentDateTime - weekStart) / (weekEnd - weekStart); //week progress
-    const weekProgressUtc =
+    weekProgress = (currentDateTime - weekStart) / (weekEnd - weekStart); //week progress
+    weekProgressUtc =
         (currentUtcDateTime - weekStartUtc) / (weekEndUtc - weekStartUtc); //week progress in UTC
-    const dayProgress = (currentDateTime - dayStart) / (dayEnd - dayStart); //day progress
-    const dayProgressUtc =
+    dayProgress = (currentDateTime - dayStart) / (dayEnd - dayStart); //day progress
+    dayProgressUtc =
         (currentUtcDateTime - dayStartUtc) / (dayEndUtc - dayStartUtc); //day progress in UTC
-    const hourProgress = (currentDateTime - hourStart) / (hourEnd - hourStart); //hour progress
-    const hourProgressUtc =
+    hourProgress = (currentDateTime - hourStart) / (hourEnd - hourStart); //hour progress
+    hourProgressUtc =
         (currentUtcDateTime - hourStartUtc) / (hourEndUtc - hourStartUtc); //hour progress in UTC
-    const minuteProgress =
+    minuteProgress =
         (currentDateTime - minuteStart) / (minuteEnd - minuteStart); //minute progress
-    const minuteProgressUtc =
+    minuteProgressUtc =
         (currentUtcDateTime - minuteStartUtc) / (minuteEndUtc - minuteStartUtc); //minute progress in UTC
-    const secondProgress =
+    secondProgress =
         (currentDateTime - secondStart) / (secondEnd - secondStart); //second progress
-    const secondProgressUtc =
+    secondProgressUtc =
         (currentUtcDateTime - secondStartUtc) / (secondEndUtc - secondStartUtc); //second progress in UTC
     const yearProgressText = document.getElementById("yearProgress"); //year progress text
     const monthProgressText = document.getElementById("monthProgress"); //month progress text
@@ -192,116 +322,96 @@ const setCurrentDateTime = () => {
     hourProgressText.value = hourProgress; //set hour progress text
     minuteProgressText.value = minuteProgress; //set minute progress text
     secondProgressText.value = secondProgress; //set second progress text
+    updateProgressText(); //update progress text
 };
 const setCurrentDateTimeUtc = () => {
     //function to set current date and time in UTC
-    const currentYear = currentDateTime.getFullYear(); //current year
-    const currentUtcYear = currentDateTime.getUTCFullYear(); //current year in UTC
-    const currentMonth = currentDateTime.getMonth(); //current month
-    const currentUtcMonth = currentDateTime.getUTCMonth(); //current month in UTC
-    const currentDate = currentDateTime.getDate(); //current date
-    const currentUtcDate = currentDateTime.getUTCDate(); //current date in UTC
-    const currentDay = currentDateTime.getDay(); //current day of week
-    const currentUtcDay = currentDateTime.getUTCDay(); //current day of week in UTC
-    const currentHour = currentDateTime.getHours(); //current hour
-    const currentUtcHour = currentDateTime.getUTCHours(); //current hour in UTC
-    const currentMinute = currentDateTime.getMinutes(); //current minute
-    const currentUtcMinute = currentDateTime.getUTCMinutes(); //current minute in UTC
-    const currentSecond = currentDateTime.getSeconds(); //current second
-    const currentUtcSecond = currentDateTime.getUTCSeconds(); //current second in UTC
-    const yearStart = new Date(currentYear, 0, 1); //start of year
-    const yearEnd = new Date(currentYear + 1, 0, 1); //end of year
-    const yearStartUtc = new Date(currentUtcYear, 0, 1); //start of year in UTC
-    const yearEndUtc = new Date(currentUtcYear + 1, 0, 0); //end of year in UTC
-    const monthStart = new Date(currentYear, currentMonth, 1); //start of month
-    const monthEnd = new Date(currentYear, currentMonth + 1, 0); //end of month
-    const monthStartUtc = new Date(currentUtcYear, currentUtcMonth, 1); //start of month in UTC
-    const monthEndUtc = new Date(currentUtcYear, currentUtcMonth + 1, 0); //end of month in UTC
-    const weekStart = new Date(
-        currentYear,
-        currentMonth,
-        currentDate - currentDay,
-    ); //start of week
-    const weekEnd = new Date(
+    updateCurrentDateTime(); //update current date and time
+    currentYear = currentDateTime.getFullYear(); //current year
+    currentUtcYear = currentDateTime.getUTCFullYear(); //current year in UTC
+    currentMonth = currentDateTime.getMonth(); //current month
+    currentUtcMonth = currentDateTime.getUTCMonth(); //current month in UTC
+    currentDate = currentDateTime.getDate(); //current date
+    currentUtcDate = currentDateTime.getUTCDate(); //current date in UTC
+    currentDay = currentDateTime.getDay(); //current day of week
+    currentUtcDay = currentDateTime.getUTCDay(); //current day of week in UTC
+    currentHour = currentDateTime.getHours(); //current hour
+    currentUtcHour = currentDateTime.getUTCHours(); //current hour in UTC
+    currentMinute = currentDateTime.getMinutes(); //current minute
+    currentUtcMinute = currentDateTime.getUTCMinutes(); //current minute in UTC
+    currentSecond = currentDateTime.getSeconds(); //current second
+    currentUtcSecond = currentDateTime.getUTCSeconds(); //current second in UTC
+    yearStart = new Date(currentYear, 0, 1); //start of year
+    yearEnd = new Date(currentYear + 1, 0, 1); //end of year
+    yearStartUtc = new Date(currentUtcYear, 0, 1); //start of year in UTC
+    yearEndUtc = new Date(currentUtcYear + 1, 0, 0); //end of year in UTC
+    monthStart = new Date(currentYear, currentMonth, 1); //start of month
+    monthEnd = new Date(currentYear, currentMonth + 1, 0); //end of month
+    monthStartUtc = new Date(currentUtcYear, currentUtcMonth, 1); //start of month in UTC
+    monthEndUtc = new Date(currentUtcYear, currentUtcMonth + 1, 0); //end of month in UTC
+    weekStart = new Date(currentYear, currentMonth, currentDate - currentDay); //start of week
+    weekEnd = new Date(
         currentYear,
         currentMonth,
         currentDate + (7 - currentDay),
     ); //end of week
-    const weekStartUtc = new Date(
+    weekStartUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate - currentUtcDay,
     ); //start of week in UTC
-    const weekEndUtc = new Date(
+    weekEndUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate + (7 - currentUtcDay),
     ); //end of week in UTC
-    const dayStart = new Date(currentYear, currentMonth, currentDate); //start of day
-    const dayEnd = new Date(currentYear, currentMonth, currentDate + 1); //end of day
-    const dayStartUtc = new Date(
-        currentUtcYear,
-        currentUtcMonth,
-        currentUtcDate,
-    ); //start of day in UTC
-    const dayEndUtc = new Date(
-        currentUtcYear,
-        currentUtcMonth,
-        currentUtcDate + 1,
-    ); //end of day in UTC
-    const hourStart = new Date(
-        currentYear,
-        currentMonth,
-        currentDate,
-        currentHour,
-    ); //start of hour
-    const hourEnd = new Date(
-        currentYear,
-        currentMonth,
-        currentDate,
-        currentHour + 1,
-    ); //end of hour
-    const hourStartUtc = new Date(
+    dayStart = new Date(currentYear, currentMonth, currentDate); //start of day
+    dayEnd = new Date(currentYear, currentMonth, currentDate + 1); //end of day
+    dayStartUtc = new Date(currentUtcYear, currentUtcMonth, currentUtcDate); //start of day in UTC
+    dayEndUtc = new Date(currentUtcYear, currentUtcMonth, currentUtcDate + 1); //end of day in UTC
+    hourStart = new Date(currentYear, currentMonth, currentDate, currentHour); //start of hour
+    hourEnd = new Date(currentYear, currentMonth, currentDate, currentHour + 1); //end of hour
+    hourStartUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate,
         currentUtcHour,
     ); //start of hour in UTC
-    const hourEndUtc = new Date(
+    hourEndUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate,
         currentUtcHour + 1,
     ); //end of hour in UTC
-    const minuteStart = new Date(
+    minuteStart = new Date(
         currentYear,
         currentMonth,
         currentDate,
         currentHour,
         currentMinute,
     ); //start of minute
-    const minuteEnd = new Date(
+    minuteEnd = new Date(
         currentYear,
         currentMonth,
         currentDate,
         currentHour,
         currentMinute + 1,
     ); //end of minute
-    const minuteStartUtc = new Date(
+    minuteStartUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate,
         currentUtcHour,
         currentUtcMinute,
     ); //start of minute in UTC
-    const minuteEndUtc = new Date(
+    minuteEndUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate,
         currentUtcHour,
         currentUtcMinute + 1,
     ); //end of minute in UTC
-    const secondStart = new Date(
+    secondStart = new Date(
         currentYear,
         currentMonth,
         currentDate,
@@ -309,7 +419,7 @@ const setCurrentDateTimeUtc = () => {
         currentMinute,
         currentSecond,
     ); //start of second
-    const secondEnd = new Date(
+    secondEnd = new Date(
         currentYear,
         currentMonth,
         currentDate,
@@ -317,7 +427,7 @@ const setCurrentDateTimeUtc = () => {
         currentMinute,
         currentSecond + 1,
     ); //end of second
-    const secondStartUtc = new Date(
+    secondStartUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate,
@@ -325,7 +435,7 @@ const setCurrentDateTimeUtc = () => {
         currentUtcMinute,
         currentUtcSecond,
     ); //start of second in UTC
-    const secondEndUtc = new Date(
+    secondEndUtc = new Date(
         currentUtcYear,
         currentUtcMonth,
         currentUtcDate,
@@ -333,29 +443,28 @@ const setCurrentDateTimeUtc = () => {
         currentUtcMinute,
         currentUtcSecond + 1,
     ); //end of second in UTC
-    const yearProgress = (currentDateTime - yearStart) / (yearEnd - yearStart); //year progress
-    const yearProgressUtc =
+    yearProgress = (currentDateTime - yearStart) / (yearEnd - yearStart); //year progress
+    yearProgressUtc =
         (currentUtcDateTime - yearStartUtc) / (yearEndUtc - yearStartUtc); //year progress in UTC
-    const monthProgress =
-        (currentDateTime - monthStart) / (monthEnd - monthStart); //month progress
-    const monthProgressUtc =
+    monthProgress = (currentDateTime - monthStart) / (monthEnd - monthStart); //month progress
+    monthProgressUtc =
         (currentUtcDateTime - monthStartUtc) / (monthEndUtc - monthStartUtc); //month progress in UTC
-    const weekProgress = (currentDateTime - weekStart) / (weekEnd - weekStart); //week progress
-    const weekProgressUtc =
+    weekProgress = (currentDateTime - weekStart) / (weekEnd - weekStart); //week progress
+    weekProgressUtc =
         (currentUtcDateTime - weekStartUtc) / (weekEndUtc - weekStartUtc); //week progress in UTC
-    const dayProgress = (currentDateTime - dayStart) / (dayEnd - dayStart); //day progress
-    const dayProgressUtc =
+    dayProgress = (currentDateTime - dayStart) / (dayEnd - dayStart); //day progress
+    dayProgressUtc =
         (currentUtcDateTime - dayStartUtc) / (dayEndUtc - dayStartUtc); //day progress in UTC
-    const hourProgress = (currentDateTime - hourStart) / (hourEnd - hourStart); //hour progress
-    const hourProgressUtc =
+    hourProgress = (currentDateTime - hourStart) / (hourEnd - hourStart); //hour progress
+    hourProgressUtc =
         (currentUtcDateTime - hourStartUtc) / (hourEndUtc - hourStartUtc); //hour progress in UTC
-    const minuteProgress =
+    minuteProgress =
         (currentDateTime - minuteStart) / (minuteEnd - minuteStart); //minute progress
-    const minuteProgressUtc =
+    minuteProgressUtc =
         (currentUtcDateTime - minuteStartUtc) / (minuteEndUtc - minuteStartUtc); //minute progress in UTC
-    const secondProgress =
+    secondProgress =
         (currentDateTime - secondStart) / (secondEnd - secondStart); //second progress
-    const secondProgressUtc =
+    secondProgressUtc =
         (currentUtcDateTime - secondStartUtc) / (secondEndUtc - secondStartUtc); //second progress in UTC
     const yearProgressText = document.getElementById("yearProgress"); //year progress text
     const monthProgressText = document.getElementById("monthProgress"); //month progress text
@@ -371,15 +480,38 @@ const setCurrentDateTimeUtc = () => {
     hourProgressText.value = hourProgressUtc; //set hour progress text
     minuteProgressText.value = minuteProgressUtc; //set minute progress text
     secondProgressText.value = secondProgressUtc; //set second progress text
+    updateProgressText(); //update progress text
 };
-window.onload = () => {
-    setCurrentDateTime();
-}; //set current date and time when page is loaded
-const percentage = (number) => (number * 100).toFixed(4) + "%"; //percentage function
-currentProgressText.textContent = `Year progress: ${percentage(yearProgress)} (${percentage(yearProgressUtc)})
+const updateProgressText = () => {
+    //function to update progress text
+    yearProgressUtc =
+        (currentUtcDateTime - yearStartUtc) / (yearEndUtc - yearStartUtc);
+    monthProgressUtc =
+        (currentUtcDateTime - monthStartUtc) / (monthEndUtc - monthStartUtc);
+    weekProgressUtc =
+        (currentUtcDateTime - weekStartUtc) / (weekEndUtc - weekStartUtc);
+    dayProgressUtc =
+        (currentUtcDateTime - dayStartUtc) / (dayEndUtc - dayStartUtc);
+    hourProgressUtc =
+        (currentUtcDateTime - hourStartUtc) / (hourEndUtc - hourStartUtc);
+    minuteProgressUtc =
+        (currentUtcDateTime - minuteStartUtc) / (minuteEndUtc - minuteStartUtc);
+    secondProgressUtc =
+        (currentUtcDateTime - secondStartUtc) / (secondEndUtc - secondStartUtc);
+    currentProgressText.textContent = `Year progress: ${percentage(yearProgress)} (${percentage(yearProgressUtc)})
 Month progress: ${percentage(monthProgress)} (${percentage(monthProgressUtc)})
 Week progress: ${percentage(weekProgress)} (${percentage(weekProgressUtc)})
 Day progress: ${percentage(dayProgress)} (${percentage(dayProgressUtc)})
 Hour progress: ${percentage(hourProgress)} (${percentage(hourProgressUtc)})
 Minute progress: ${percentage(minuteProgress)} (${percentage(minuteProgressUtc)})
 Second progress: ${percentage(secondProgress)} (${percentage(secondProgressUtc)})`; //set current progress text based on current date and time progress
+};
+window.onload = () => {
+    setCurrentDateTime();
+}; //set current date and time when page is loaded
+updateDateTimeButton.onclick = () => {
+    setCurrentDateTime();
+}; //update date and time when button is clicked
+updateDateTimeUtcButton.onclick = () => {
+    setCurrentDateTimeUtc();
+}; //update date and time in UTC when button is clicked
