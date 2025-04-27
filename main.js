@@ -30,8 +30,6 @@ const setCurrentDateTime = () => {
     const currentUtcMinute = currentDateTime.getUTCMinutes(); //current minute in UTC
     const currentSecond = currentDateTime.getSeconds(); //current second
     const currentUtcSecond = currentDateTime.getUTCSeconds(); //current second in UTC
-    const currentMillisecond = currentDateTime.getMilliseconds(); //current millisecond
-    const currentUtcMillisecond = currentDateTime.getUTCMilliseconds(); //current millisecond in UTC
     const yearStart = new Date(currentYear, 0, 1); //start of year
     const yearEnd = new Date(currentYear + 1, 0, 1); //end of year
     const yearStartUtc = new Date(currentUtcYear, 0, 1); //start of year in UTC
@@ -211,8 +209,6 @@ const setCurrentDateTimeUtc = () => {
     const currentUtcMinute = currentDateTime.getUTCMinutes(); //current minute in UTC
     const currentSecond = currentDateTime.getSeconds(); //current second
     const currentUtcSecond = currentDateTime.getUTCSeconds(); //current second in UTC
-    const currentMillisecond = currentDateTime.getMilliseconds(); //current millisecond
-    const currentUtcMillisecond = currentDateTime.getUTCMilliseconds(); //current millisecond in UTC
     const yearStart = new Date(currentYear, 0, 1); //start of year
     const yearEnd = new Date(currentYear + 1, 0, 1); //end of year
     const yearStartUtc = new Date(currentUtcYear, 0, 1); //start of year in UTC
