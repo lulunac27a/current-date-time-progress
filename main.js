@@ -2,7 +2,11 @@ const currentDateTimeText = document.getElementById("currentDateTime"); //curren
 const currentDateTimeUtcText = document.getElementById("currentDateTimeUtc"); //current date and time in UTC text
 const currentProgressText = document.getElementById("currentProgress"); //current progress text
 const updateDateTimeButton = document.getElementById("updateDateTime"); //update date and time button
+const updateLocalDateTimeButton = document.getElementById(
+    "updateLocalDateTime",
+); //update local date and time button
 const updateDateTimeUtcButton = document.getElementById("updateUtcDateTime"); //update date and time in UTC button
+let mode = "local"; //current mode
 let currentDateTime = new Date(); //current date and time
 let currentUtcDateTime = new Date(
     currentDateTime.getUTCFullYear(),
@@ -168,6 +172,7 @@ let secondProgressUtc =
 const percentage = (number) => (number * 100).toFixed(4) + "%"; //percentage function
 const setCurrentDateTime = () => {
     //function to set current date and time
+    mode = "local"; //set mode to local
     updateCurrentDateTime(); //update current date and time
     currentYear = currentDateTime.getFullYear(); //current year
     currentUtcYear = currentDateTime.getUTCFullYear(); //current year in UTC
@@ -326,6 +331,7 @@ const setCurrentDateTime = () => {
 };
 const setCurrentDateTimeUtc = () => {
     //function to set current date and time in UTC
+    mode = "utc"; //set mode to UTC
     updateCurrentDateTime(); //update current date and time
     currentYear = currentDateTime.getFullYear(); //current year
     currentUtcYear = currentDateTime.getUTCFullYear(); //current year in UTC
@@ -510,6 +516,14 @@ window.onload = () => {
     setCurrentDateTime();
 }; //set current date and time when page is loaded
 updateDateTimeButton.onclick = () => {
+    mode === "local"
+        ? setCurrentDateTime()
+        : mode === "utc"
+          ? setCurrentDateTimeUtc()
+          : "";
+}; //update date and time when button is clicked
+
+updateLocalDateTimeButton.onclick = () => {
     setCurrentDateTime();
 }; //update date and time when button is clicked
 updateDateTimeUtcButton.onclick = () => {
