@@ -1,6 +1,8 @@
 const currentDateTimeText = document.getElementById("currentDateTime"); //current date and time text
 const currentDateTimeUtcText = document.getElementById("currentDateTimeUtc"); //current date and time in UTC text
 const currentProgressText = document.getElementById("currentProgress"); //current progress text
+const updateDateTimeButton = document.getElementById("updateDateTime"); //update date and time button
+const updateDateTimeUtcButton = document.getElementById("updateDateTimeUtc"); //update date and time in UTC button
 const currentDateTime = new Date(); //current date and time
 const currentUtcDateTime = new Date(
     currentDateTime.getUTCFullYear(),
