@@ -15,6 +15,7 @@ let currentUtcDateTime = new Date(
     currentDateTime.getUTCHours(),
     currentDateTime.getUTCMinutes(),
     currentDateTime.getUTCSeconds(),
+    currentDateTime.getUTCMilliseconds(),
 ); //current date and time in UTC
 const updateCurrentDateTime = () => {
     //function to update current date and time
@@ -26,6 +27,7 @@ const updateCurrentDateTime = () => {
         currentDateTime.getUTCHours(),
         currentDateTime.getUTCMinutes(),
         currentDateTime.getUTCSeconds(),
+        currentDateTime.getUTCMilliseconds(),
     ); //current date and time in UTC
 };
 currentDateTimeText.textContent = `${currentDateTime.toLocaleString()}`; //set current date and time text
@@ -523,8 +525,8 @@ updateDateTimeButton.onclick = () => {
     mode === "local"
         ? setCurrentDateTime()
         : mode === "utc"
-            ? setCurrentDateTimeUtc()
-            : "";
+          ? setCurrentDateTimeUtc()
+          : "";
 }; //update date and time when button is clicked
 
 updateLocalDateTimeButton.onclick = () => {
