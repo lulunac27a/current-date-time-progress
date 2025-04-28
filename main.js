@@ -525,8 +525,8 @@ updateDateTimeButton.onclick = () => {
     mode === "local"
         ? setCurrentDateTime()
         : mode === "utc"
-          ? setCurrentDateTimeUtc()
-          : "";
+            ? setCurrentDateTimeUtc()
+            : "";
 }; //update date and time when button is clicked
 
 updateLocalDateTimeButton.onclick = () => {
