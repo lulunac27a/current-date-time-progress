@@ -6,3 +6,8 @@ span {
     white-space: pre-line; /*use multiple lines with line breaks for improved readability*/
     line-height: 150%; /*set default line height to 150%*/
 }
+progress {
+    height: 30px; /*set default height to 30px*/
+    border-radius: 5px; /*set default border radius to 5px*/
+    margin: 5px; /*set default margin to 5px*/
+}
