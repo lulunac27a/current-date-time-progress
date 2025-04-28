@@ -173,6 +173,8 @@ const percentage = (number) => (number * 100).toFixed(4) + "%"; //percentage fun
 const setCurrentDateTime = () => {
     //function to set current date and time
     mode = "local"; //set mode to local
+    currentDateTimeText.textContent = `${currentDateTime.toLocaleString()}`; //set current date and time text
+    currentDateTimeUtcText.textContent = `${currentDateTime.toUTCString()}`; //set current date and time in UTC text
     updateCurrentDateTime(); //update current date and time
     currentYear = currentDateTime.getFullYear(); //current year
     currentUtcYear = currentDateTime.getUTCFullYear(); //current year in UTC
@@ -332,6 +334,8 @@ const setCurrentDateTime = () => {
 const setCurrentDateTimeUtc = () => {
     //function to set current date and time in UTC
     mode = "utc"; //set mode to UTC
+    currentDateTimeText.textContent = `${currentDateTime.toLocaleString()}`; //set current date and time text
+    currentDateTimeUtcText.textContent = `${currentDateTime.toUTCString()}`; //set current date and time in UTC text
     updateCurrentDateTime(); //update current date and time
     currentYear = currentDateTime.getFullYear(); //current year
     currentUtcYear = currentDateTime.getUTCFullYear(); //current year in UTC
